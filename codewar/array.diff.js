@@ -22,3 +22,13 @@ function arrayDiff(a, b) {
 //b 배열 안에 있는 내용이 a 배열안에 있다면 지운다. 
 //b 배열 안에 있는 내용을 하나씩 꺼내서 확인한다. 하나씩 a배열 안에 그 내용이 있는지 확인한다. 
 //a 배열안에 내용물이 있다면, 그 값을 지운다.
+
+// 이 문제에 대한 다양한 풀이 :
+function array_diff(a, b) {
+    return a.filter(e => !b.includes(e));
+  }
+
+function array_diff(a, b) {
+    b = new Set(b)
+    return a.filter(v => !b.has(v))
+}
