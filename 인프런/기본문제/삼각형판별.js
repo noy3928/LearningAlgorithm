@@ -18,9 +18,9 @@ function solution(a, b, c){
     console.log(otherSidesSum)
     
     if(otherSidesSum > max){
-        answer = "NO"
-    }else{
         answer = "YES"
+    }else{
+        answer = "NO"
     }
  
 
@@ -28,3 +28,17 @@ function solution(a, b, c){
 }
 
 console.log(solution(13, 33, 17));
+
+//---------------------answer 
+
+function solution(a,b,c){
+    let answer ="YES", max; 
+    let sum = a + b + c ; // 세 막대의 총 합
+    //max에 a,b,c 중 가장 큰 값을 넣어줘야 한다. 
+    if(a>b) max = a;
+    else max = b;
+    if(c>max) max = c;
+    if((sum-max)<=max) answer = "NO";
+
+    return answer;
+}
