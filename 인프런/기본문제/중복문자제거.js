@@ -13,3 +13,15 @@ function solution(s){
     return answer;
 }
 console.log(solution("ksekkset"));
+
+// k의 갯수 구하기 
+
+const solution = () => {
+    let answer = 0;
+    let pos = s.indexOf('k');
+    while(pos!==-1){
+        answer ++;
+        pos = s.indexOf('k', pos+1);
+    }
+    return answer;
+}
