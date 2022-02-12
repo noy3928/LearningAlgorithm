@@ -12,3 +12,28 @@ function solution(arr){
     }             
     return answer;
 }
+
+//--------- other solution 
+
+function factorial(n) {
+    // Write your code here
+    const factorialArray = []
+    
+    for(let i = 1; i < n + 1 ; i ++){
+        factorialArray.push(i) 
+    }
+    return factorialArray.reduce((acc, cur) => {
+        return acc * cur
+    }, 1) 
+}
+
+
+//---------- 
+
+function factorial(n){
+    if (n == 0)
+        return 1;
+    else
+        return (n*(factorial(n - 1)));
+}
+
