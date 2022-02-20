@@ -28,3 +28,41 @@ function solution(s, t){
 
 let str="teachermode";
 console.log(solution(str, 'e'));
+
+
+
+
+/*
+필요한 정보 : 
+
+1) t의 위치 배열  
+2) 현재 문자와 t사이의 거리 
+3) 2개의 값이 나오면 2개중에 작은 값 
+3) 그 값을 배열에 넣기 
+
+*/
+
+function solution(s, t){
+    const characterPositions = [] 
+    const inputArr = [...s]
+    
+        
+    inputArr.forEach((cur, idx) => {
+        if(cur === t){
+            characterPositions.push(idx) 
+        }
+    })
+
+    const resultArr = inputArr.map((el, curIndex) => {
+        const minDistanceArr = characterPositions.map((tPosition) => {
+            return Math.abs(tPosition - curIndex) 
+        })
+        const minDistance = Math.min(...minDistanceArr)
+        return minDistance
+    })
+
+    return resultArr 
+}
+
+let str="teachermode";
+console.log(solution(str, 'e'));
