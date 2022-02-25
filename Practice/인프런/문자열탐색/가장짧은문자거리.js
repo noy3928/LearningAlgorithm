@@ -46,7 +46,7 @@ function solution(s, t){
     const characterPositions = [] 
     const inputArr = [...s]
     
-        
+    // 
     inputArr.forEach((cur, idx) => {
         if(cur === t){
             characterPositions.push(idx) 
