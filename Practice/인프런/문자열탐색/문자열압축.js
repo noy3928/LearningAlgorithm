@@ -19,3 +19,62 @@ function solution(s){
 
 let str="KKHSSSSSSSE";
 console.log(solution(str));
+
+
+
+//-------------------------
+
+
+function solution(s){
+    let answer="";
+    let count = 0
+    const sArr = [...s]
+    let memorizedChar = sArr[0] 
+
+    
+
+    sArr.forEach((char, idx) => {
+        
+        if(char === memorizedChar){
+            count ++ 
+            if(idx === sArr.length - 1 ) {
+                
+                answer += `${memorizedChar}${count}`
+            }
+        }else{                        
+            answer += memorizedChar + (count === 1 ? "" : count)
+            count = 1
+            memorizedChar = char
+            
+            if(idx === sArr.length - 1 ) {
+                answer += `${memorizedChar}`
+            }
+        }
+        
+    })
+    
+    return answer
+}
+
+let str="KKHSSSSSSSE";
+console.log(solution(str));
+
+
+/*
+문자열이 입력되면, 
+반복문을 돌린다. 
+
+특정 문자가 나오면 그 문자를 기록한다. 
+
+그 문자가 다음 문자열에서도 나오는지 확인한다.
+
+그 문자가 다음 문자열에서도 나오면, count를 +1 한다. 
+
+다음에 나온 문자가 이전에 나온 문자와 다른 문자열이라면, result에 
+해당 문자와 count를 push 한다. 
+
+이렇게 반복 
+
+
+*/
+
