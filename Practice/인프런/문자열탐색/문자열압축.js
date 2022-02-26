@@ -38,7 +38,6 @@ function solution(s){
         if(char === memorizedChar){
             count ++ 
             if(idx === sArr.length - 1 ) {
-                
                 answer += `${memorizedChar}${count}`
             }
         }else{                        
