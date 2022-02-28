@@ -62,10 +62,6 @@ function solution(n, arr){
 //-------------------------------
 
 
-
-
-
-
 function solution(n, arr){
     let answer, max=Number.MIN_SAFE_INTEGER;
     for(let x of arr){
