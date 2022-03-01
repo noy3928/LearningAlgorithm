@@ -25,3 +25,31 @@ function solution(arr){
 
 let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
 console.log(solution(arr));
+
+
+//---------------------------------
+
+function isPrime(num) {
+    // 소수는 1과 자기 자신만으로만 나누어 떨어지는 수 임으로
+    // num > i
+    for(let i = 2; num > i; i++) {
+    if(num % i === 0) { //이 부분에서 num이  다른 수로 나눠떨어진다면 소수가 아님
+      return false;
+     }
+    }
+   // 소수는 1보다 큰 정수임으로
+   // 1보다 작으면 false를 리턴한다
+   return num > 1;
+}
+
+
+function solution(num) {
+    // 수를 뒤집는다. 
+    const reversedNum = num.map(el => String(el)).map(el => Number(el.split('').reverse().join('')))
+
+    reversedNum.forEach(eachNum => {
+        if(isPrime(eachNum)) console.log(eachNum)
+    })
+}
+
+
