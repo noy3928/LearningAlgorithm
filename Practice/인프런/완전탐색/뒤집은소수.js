@@ -53,3 +53,27 @@ function solution(num) {
 }
 
 
+
+//-----------------------
+const isPrime = (num) => {
+    if(num === 1) return false
+    
+    for(let i = 2; i < parseInt(Math.sqrt(num)); i ++){
+        if(num%2 === 0) return false
+    }
+
+    return true
+}
+
+const solution = (numArr) => {
+    for(x of numArr){
+        let res = 0
+        while(x){
+            let t = x % 10
+            res = res * 10 + t 
+            x = parseInt(x/10)
+        }
+        if(isPrime(res)) return res
+    }
+}
+

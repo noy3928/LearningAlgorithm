@@ -83,3 +83,31 @@ function solution(test){
 
 let arr=[[3, 4, 1, 2], [4, 3, 2, 1], [3, 1, 4, 2]];
 console.log(solution(arr));
+
+
+
+//-------------------------
+const solution = (arr) => {
+    const m = arr[0].length
+    const n = arr.length
+    let answer = 0
+    for(let i = 1; i <= m; i++){
+        for(let j = 1; j <= m; j++){
+            let cnt = 0
+            for(let k = 0; k < n; k ++){
+                    let pi = pj = 0
+                for(let s = 0; s < m; s ++){ 
+                    if(arr[k][s] === i) pi = s    
+                    if(arr[k][s] === j) pj = s
+                }
+                    if(pi > pj) cnt ++
+            }
+            if (cnt === n) answer ++
+        }
+    }
+    console.log(answer)
+}
+
+
+let test=[[3, 4, 1, 2], [4, 3, 2, 1], [3, 1, 4, 2]];
+console.log(solution(test));
