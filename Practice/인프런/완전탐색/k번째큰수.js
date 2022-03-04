@@ -15,3 +15,29 @@ function solution(n, k, card){
 
 let arr=[13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
 console.log(solution(10, 3, arr));
+
+
+
+//--------------------------------
+
+function solution(n, k, cards){
+    let answer;
+    let sumArr = new Set()
+    const m = cards.length
+
+    for(let i = 0; i < m; i ++){
+        for(let j = i + 1; j < n; j ++){
+            for(let k = j + 1 ; k < n ; k ++){
+                const sum = cards[i] + cards[j] + cards[k]
+                sumArr.add(sum)
+            }
+        }
+    }
+
+    const sortedArr = [...sumArr].sort((a,b) => b - a)
+    answer = sortedArr[k - 1]
+    return answer;
+}
+
+let arr=[13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+console.log(solution(10, 3, arr));
