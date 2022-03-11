@@ -1,25 +1,41 @@
 let fs = require("fs");
-let input = fs
-  .readFileSync("example.txt")
-  .toString()
-  .trim()
+let input = fs.readFileSync("example.txt").toString().trim().split("\n");
+
+const [N, M] = input
+  .shift()
   .split(" ")
   .map((v) => Number(v));
 
-const solution = (numbers) => {
-  let booleans = Array.from({ length: 100 }, () => false);
+const nums = input
+  .shift()
+  .split(" ")
+  .map((v) => Number(v));
 
-  for (num of numbers) {
-    booleans[num] = true;
+const solution = (n, s, arr) => {
+  let answer = (sum = j = length = 0);
+  while (sum < s) {
+    if (j < n) {
+      sum += arr[j++];
+      length++;
+    } else break;
   }
+  answer = length;
+  sum = 0;
+  for (let i = 1; i < arr.length; i++) {
+    j = i;
+    length = 0;
 
-  let index = 0;
-  for (let i = 0; i < booleans.length; i++) {
-    if (booleans[i]) {
-      numbers[index++] = i;
+    while (sum < s) {
+      if (j < n) {
+        sum += arr[j++];
+        length++;
+      } else break;
     }
+
+    if (sum >= 15) answer = Math.min(answer, length);
+    sum = 0;
   }
-  console.log(numbers);
+  console.log(answer);
 };
 
-solution(input);
+solution(N, M, nums);
