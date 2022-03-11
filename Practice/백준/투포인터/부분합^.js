@@ -10,17 +10,33 @@
 5. S이상인지 확인한다. 
 6. answer = Math.min(answer, sum)과 같은 방식으로 가장 작은 수를 걸러낸다. 
 */
-const solution = (n, s, arr) => {
-  let answer = (sum = 0);
 
-  for (let i = 0; i < arr.length; i++) {
-    let j = i;
+// 시간 초과한 방법....
+const solution = (n, s, arr) => {
+  let answer = (sum = j = length = 0);
+  while (sum < s) {
+    if (j < n) {
+      sum += arr[j++];
+      length++;
+    } else break;
+  }
+  answer = length;
+  sum = 0;
+  for (let i = 1; i < arr.length; i++) {
+    j = i;
+    length = 0;
+
     while (sum < s) {
-      if (j < n) sum += arr[j++];
-      else break;
+      if (j < n) {
+        sum += arr[j++];
+        length++;
+      } else break;
     }
-    answer = Math.min(answer, sum);
+
+    if (sum >= 15) answer = Math.min(answer, length);
     sum = 0;
   }
   console.log(answer);
 };
+
+solution(N, M, nums);
