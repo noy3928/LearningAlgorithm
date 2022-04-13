@@ -1,15 +1,24 @@
 let fs = require("fs");
-let input = fs.readFileSync("example.txt").toString().trim().split("\n");
+let input = fs.readFileSync("example.txt").toString();
 
-const [board, moves] = input;
-console.log(typeof board);
+/*
+1.들어온 문자열을 순회한다. 
+2.숫자라면 stack에 쌓아둔다. 
+3.숫자가 아니라면, 해당 기호에 알맞도록 stack에 있는 맨 마지막 수와 그 전 수를 연산한다.
+4.해당 수를 스택의 마지막에 push 한다. 
+*/
 
-/**
- * 1.moves에 있는 숫자는 탐색할 열을 의미한다.
- * 2.moves에 있는 숫자에 해당하는 열로 이동해서, 그 열을 순차적으로 순회한다.
- * 3.순회하면서 0이 아닌 숫자를 만나면, 그 숫자를 빼서 bucket에 넣어준다. 그리고 원래 있던 자리에 0을 넣어준다.
- * 4.bucket에 넣어줄 때, 마지막 숫자와 지금 들어올 숫자가 같다면, answer 를 +1 한다. 그리고 지금 들어가는 숫자와 마지막에 있던 숫자를 제거한다.
- * 5.이 루틴을 반복한다.
- */
+const solution = (str) => {
+  let stack = [];
+  [...str].forEach((el) => {
+    if (!isNaN(el)) {
+      stack.push(el);
+    } else {
+      const result = Math.abs(eval(`${stack.pop()}${el}${stack.pop()}`));
+      stack.push(result);
+    }
+  });
+  console.log(stack[0]);
+};
 
-const solution = () => {};
+solution(input);
