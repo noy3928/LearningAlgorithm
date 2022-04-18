@@ -2,24 +2,29 @@ let fs = require("fs");
 let input = fs
   .readFileSync("example.txt")
   .toString()
-  .split(" ")
-  .map((v) => Number(v));
-console.log(input);
+  .split("\n")
+  .map((v) => v.split(" "));
+const [N, M] = input;
 
-const solution = (input) => {
-  for (let i = 0; i < input.length; i++) {
-    for (let j = i - 1; j >= 0; j--) {
-      const tmp = input[j];
-      if (input[j] > tmp) {
-        input[j + 1] = input[j];
-      } else {
-        break;
+function solution(n, m) {
+  const size = n[0];
+  let cache = Array.from({ length: size }, () => 0);
+
+  m.forEach((item) => {
+    let pos = -1;
+    for (let i = 0; i < size - 1; i++) if (item === cache[i]) pos = i;
+    if (pos === -1) {
+      for (let i = size - 1; i >= 1; i--) {
+        cache[i] = cache[i - 1];
       }
-
-      if (j == 0) input[j] = tmp;
+    } else {
+      for (let i = pos; i >= 1; i--) {
+        cache[i] = cache[i - 1];
+      }
     }
-  }
-  console.log(input);
-};
+    cache[0] = item;
+  });
+  console.log(cache);
+}
 
-solution(input);
+solution(N, M);
