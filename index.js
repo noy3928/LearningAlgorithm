@@ -1,40 +1,30 @@
 let fs = require("fs");
-let input = fs.readFileSync("example.txt").toString().split(" ");
+let input = fs
+  .readFileSync("example.txt")
+  .toString()
+  .split("\n")
+  .map((v) => v.trim().split(" "));
 
 /*
- 1. 현재 현수가 있는 위치를 구한다. i > i +1 인 상황이면 i번째에 현수가 있는 것이다.
- 2. 그리고 현수의 값을 구한다. 
- 3. 주어진 학생들을 키순으로 정렬한다.
- 4. 현수의 원래 번호를 구한다. indexof를 통해서 구한다. 
- */
-
-// 틀린 답
+1. 버블정렬로 정렬한다.
+2. 정렬을 하다가 두 값이 같다. 그러면 y값을 비교한다. 
+*/
 
 const solution = (input) => {
-  let answer = [];
-  let 현수의키 = 0;
-  let 현수의번호 = 0;
-
+  let arr = input;
   for (let i = 0; i < input.length; i++) {
-    if (input[i] > input[i + 1]) {
-      answer.push(i + 1);
-      현수의키 = input[i];
-      break;
+    for (let j = 0; j < input.length - i; j++) {
+      console.log(arr[j], arr[j + 1]);
+      if (arr[j][0] === arr[j + 1][0]) {
+        if (arr[j][1] > arr[j + 1][1]) {
+          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        }
+      } else if (arr[j][0] > arr[j + 1][0]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
     }
   }
-
-  for (let i = 0; i < input.length; i++) {
-    let idx = i;
-    for (let j = i + 1; j < input.length; j++) {
-      if (input[j] < input[idx]) idx = j;
-    }
-    [input[idx], input[i]] = [input[i], input[idx]];
-  }
-
-  현수의번호 = [...input].indexOf(현수의키);
-  answer.push(현수의번호 + 1);
-
-  console.log(answer.join(" "));
+  console.log(arr);
 };
 
 solution(input);
