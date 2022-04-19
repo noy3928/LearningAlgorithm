@@ -6,6 +6,27 @@ let input = require("fs")
   .map((v) => v.trim().split(" "));
 
 const solution = (input) => {
+  let answer = 0;
+  input.sort((a, b) => a[0] - b[0]);
+
+  input.forEach((time, idx) => {
+    let maxCount = 1;
+    for (let j = idx + 1; j < input.length; j++) {
+      if (Number(input[j][0]) < Number(time[1])) {
+        console.log(input[j][0], time[1]);
+        maxCount++;
+      }
+    }
+    answer = Math.max(maxCount, answer);
+  });
+  console.log(answer);
+};
+
+solution(input);
+
+//------ 선생님 풀이
+
+const solution2 = (input) => {
   let answer = Number.MIN_SAFE_INTEGER;
   let timeLine = [];
 
@@ -31,4 +52,4 @@ const solution = (input) => {
   console.log(answer);
 };
 
-solution(input);
+solution2(input);
