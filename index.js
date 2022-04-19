@@ -1,34 +1,29 @@
 let input = require("fs")
   .readFileSync("example.txt")
   .toString()
-  .trim()
   .split("\n")
-  .map((v) => v.trim().split(" "));
+  .map((v) => v.split(" "));
 
-const solution = (input) => {
-  let answer = Number.MIN_SAFE_INTEGER;
-  let timeLine = [];
+const target = input.shift().shift();
+const arr = input.shift();
 
-  for (const x of input) {
-    timeLine.push([x[0], "s"]);
-    timeLine.push([x[1], "e"]);
-  }
+const solution = (target, arr) => {
+  let answer = 0;
+  arr.sort((a, b) => a - b);
 
-  timeLine.sort((a, b) => {
-    if (a[0] === b[0]) {
-      return a[1].charCodeAt() - b[1].charCodeAt();
-    } else {
-      return a[0] - b[0];
-    }
-  });
+  console.log(target);
 
-  let cnt = 0;
-  for (const x of timeLine) {
-    if (x[1] === "s") cnt++;
-    else cnt--;
-    answer = Math.max(answer, cnt);
+  let lt = 0,
+    rt = arr.length - 1;
+  while (lt <= rt) {
+    let mid = parseInt((lt + rt) / 2);
+    if (arr[mid] === target) {
+      answer = mid + 1;
+      break;
+    } else if (target < arr[mid]) rt = mid - 1;
+    else lt = mid + 1;
   }
   console.log(answer);
 };
 
-solution(input);
+solution(target, arr);
