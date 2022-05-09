@@ -3,6 +3,7 @@ function solution(arr) {
     flag = 0
   let total = arr.reduce((a, b) => a + b, 0)
   let n = arr.length
+
   function DFS(L, sum) {
     if (flag) return
     if (L === n) {

@@ -1,47 +1,23 @@
-let input = require("fs")
-  .readFileSync("example.txt")
-  .toString()
-  .trim()
-  .split("\n")
-  .map((v) => v.split(" "));
+let input = require("fs").readFileSync("example.txt").toString().split("\n")
 
-const m = input.shift();
+const [N, M] = input.shift().split(" ")
+const array = input.map(v => Number(v))
 
-const position = input.shift();
+const solution = (N, arr) => {
+  let answer = Number.MIN_SAFE_INTEGER
+  let l = arr.length
 
-const count = (distance, position) => {
-  let cnt = 1,
-    ep = position[0];
-
-  for (let i = 1; i < position.length; i++) {
-    if (position[i] - ep >= distance) {
-      cnt++;
-      ep = position[i];
-    }
-  }
-
-  return cnt;
-};
-
-const solution = (m, position) => {
-  position.sort((a, b) => a - b);
-
-  let lt = 1;
-  let rt = position[position.length - 1];
-  let answer = 0;
-
-  while (lt <= rt) {
-    let mid = parseInt((lt + rt) / 2);
-
-    if (count(mid, position) >= m) {
-      lt = mid + 1;
-      answer = Math.max(mid, answer);
+  function DFS(L, sum) {
+    if (sum > N) return
+    if (L === l) {
+      answer = Math.max(answer, sum)
     } else {
-      rt = mid - 1;
+      DFS(L + 1, sum + arr[L])
+      DFS(L + 1, sum)
     }
   }
+  DFS(0, 0)
+  console.log(answer)
+}
 
-  console.log(answer);
-};
-
-solution(m, position);
+solution(N, array)
