@@ -1,30 +1,26 @@
-let input = require("fs").readFileSync("example.txt").toString().split("\n")
+let [N, M] = require("fs")
+  .readFileSync("example.txt")
+  .toString()
+  .split(" ")
+  .map(v => Number(v))
 
-const [N, M] = input.shift().split(" ")
-const array = input.map(v =>
-  v
-    .trim()
-    .split(" ")
-    .map(v => Number(v))
-)
+console.log(N, M)
 
-const solution = (N, M, array) => {
-  let answer = Number.MIN_SAFE_INTEGER
-  let l = array.length
-  const arr = array
+const solution = (N, M) => {
+  const tmp = Array.from({ length: M }, () => 0)
 
-  function DFS(L, sumScore, sumTime) {
-    if (sumTime > M) return
-    if (L === l) {
-      answer = Math.max(answer, sumScore)
+  function DFS(L) {
+    if (L === M) {
+      console.log(tmp.join(" "))
     } else {
-      DFS(L + 1, sumScore + arr[L][0], sumTime + arr[L][1])
-      DFS(L + 1, sumScore, sumTime)
+      for (let i = 1; i < N + 1; i++) {
+        tmp[L] = i
+        DFS(L + 1)
+      }
     }
   }
 
-  DFS(0, 0, 0)
-  console.log(answer)
+  DFS(0)
 }
 
-solution(N, M, array)
+solution(N, M)
