@@ -4,14 +4,14 @@ let [N, M] = require("fs")
   .split(" ")
   .map(v => Number(v))
 
-console.log(N, M)
-
 const solution = (N, M) => {
   const tmp = Array.from({ length: M }, () => 0)
+  let cnt = 0
 
   function DFS(L) {
     if (L === M) {
       console.log(tmp.join(" "))
+      cnt++
     } else {
       for (let i = 1; i < N + 1; i++) {
         tmp[L] = i
@@ -21,6 +21,7 @@ const solution = (N, M) => {
   }
 
   DFS(0)
+  console.log(cnt)
 }
 
 solution(N, M)
