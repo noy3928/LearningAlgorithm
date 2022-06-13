@@ -1,3 +1,31 @@
+function solution(m, arr) {
+  let answer = []
+  n = arr.length
+  let ch = Array.from({ length: n }, () => 0)
+  let tmp = Array.from({ length: m }, () => 0)
+  function DFS(L) {
+    if (L === m) {
+      answer.push(tmp.slice())
+    } else {
+      for (let i = 0; i < n; i++) {
+        if (ch[i] === 0) {
+          ch[i] = 1
+          tmp[L] = arr[i]
+          DFS(L + 1)
+          ch[i] = 0
+        }
+      }
+    }
+  }
+  DFS(0)
+  return answer
+}
+
+let arr = [3, 6, 9]
+console.log(solution(2, arr))
+
+// ---------
+
 let input = require("fs").readFileSync("example.txt").toString().split("\n")
 
 const [N, M] = input
@@ -5,7 +33,7 @@ const [N, M] = input
   .split(" ")
   .map(v => Number(v))
 
-const arr = input
+const array = input
   .shift()
   .split(" ")
   .map(v => Number(v))
@@ -34,10 +62,4 @@ const solution = (M, N, arr) => {
   DFS(0)
 }
 
-solution(M, N, arr)
-
-//1.DFS를 끝마치는 순간은 tmp의 값의 합이 15와 같거나 넘을 때.
-//2.그 순간의 L값을 확인한다.
-//3.항상 L의 최솟값을 answer에 저장한다.
-//4.맨 처음 answer값은 Number.MAX_SAFE_NUMBER로 한다.
-//5.DFS내부에서는 for of문으로 각각의 요소들을 돌린다.
+solution(M, N, array)
