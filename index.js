@@ -1,17 +1,21 @@
-let input = require("fs").readFileSync("example.txt").toString().split("\n")
+let [N, M] = require("fs")
+  .readFileSync("example.txt")
+  .toString()
+  .split(" ")
+  .map(v => Number(v))
+console.log(N, M)
 
-function solution(n) {
-  let answer = 1
+function solution(N, M) {
+  let answer
+  let dy = Array.from(Array(N + 1), () => Array(M + 1).fill(0))
 
-  function DFS(L) {
-    if (L === 1) {
-      console.log(answer)
-    } else {
-      answer *= L
-      DFS(L - 1)
-    }
+  function DFS(n, m) {
+    if (dy[n][m] !== 0) return dy[n][m]
+    if (n === m || m === 0) return 1
+    else return (dy[n][m] = DFS(n - 1, m - 1) + DFS(n - 1, m))
   }
-  DFS(n)
+  answer = DFS(N, M)
+  console.log(answer)
 }
 
-solution(4)
+solution(N, M)
