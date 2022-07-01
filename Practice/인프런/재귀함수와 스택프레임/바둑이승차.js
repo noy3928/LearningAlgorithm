@@ -40,3 +40,20 @@ const solution = (N, arr) => {
 }
 
 solution(N, array)
+
+function solution(W, arr) {
+  let n = arr.length
+  let answer = Number.MIN_SAFE_INTEGER
+
+  function DFS(L, sum) {
+    if (sum > W) return
+    if (L === n) {
+      answer = Math.max(answer, sum)
+    } else {
+      DFS(L + 1, sum + arr[L])
+      DFS(L + 1, sum)
+    }
+  }
+  DFS(0, 0)
+  console.log(answer)
+}
