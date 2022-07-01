@@ -41,3 +41,26 @@ function solution(n) {
   }
   DFS(1)
 }
+
+function solution(n) {
+  let check = Array.from({ length: n }, () => false)
+  function DFS(L) {
+    if (L == n + 1) {
+      const tmp = []
+      for (let i = 1; i < n + 1; i++) {
+        if (check[i]) {
+          tmp.push(i)
+        }
+      }
+      console.log(tmp.join(" "))
+    } else {
+      check[L] = true
+      DFS(L + 1)
+      check[L] = false
+      DFS(L + 1)
+    }
+  }
+  DFS(1)
+}
+
+solution(3)
