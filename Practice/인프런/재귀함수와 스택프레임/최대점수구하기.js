@@ -49,3 +49,25 @@ const solution = (N, M, array) => {
 }
 
 solution(N, M, array)
+
+//---------
+
+function solution(arr, m) {
+  let answer = Number.MIN_SAFE_INTEGER
+  let n = arr.length
+
+  function DFS(L, score, time) {
+    console.log(L, score, time)
+    if (time > m) return
+    if (L === n) {
+      return (answer = Math.max(answer, score))
+    } else {
+      const currentScore = arr[L][0]
+      const currentTime = arr[L][1]
+      DFS(L + 1, score + currentScore, time + currentTime)
+      DFS(L + 1, score, time)
+    }
+  }
+  DFS(0, 0, 0)
+  console.log(answer)
+}
