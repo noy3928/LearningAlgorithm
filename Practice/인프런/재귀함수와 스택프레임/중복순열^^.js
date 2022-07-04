@@ -45,3 +45,20 @@ const solution = (N, M) => {
 }
 
 solution(N, M)
+
+//--------
+
+function solution(m, n) {
+  const tmp = Array.from({ length: n }, () => 0)
+  function DFS(L) {
+    if (L == n) {
+      console.log(tmp.join(" "))
+    } else {
+      for (let i = 1; i <= m; i++) {
+        tmp[L] = i
+        DFS(L + 1)
+      }
+    }
+  }
+  DFS(0)
+}
