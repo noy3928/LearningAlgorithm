@@ -43,3 +43,23 @@ const solution = (M, S) => {
 }
 
 solution(array, Number(S))
+
+//--------
+
+function solution(arr, m) {
+  let answer = Number.MAX_SAFE_INTEGER
+  function DFS(count, sum) {
+    if (sum > m) return
+    if (sum === m) {
+      return (answer = Math.min(answer, count))
+    } else {
+      arr.forEach(v => {
+        DFS(count + 1, sum + v)
+      })
+    }
+  }
+  DFS(0, 0)
+  console.log(answer)
+}
+
+solution([1, 2, 5], 15)
