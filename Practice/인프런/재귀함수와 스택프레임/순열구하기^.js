@@ -63,3 +63,29 @@ const solution = (M, N, arr) => {
 }
 
 solution(M, N, array)
+
+//------------------
+
+function solution(m, arr) {
+  const n = arr.length
+  const tmp = Array.from({ length: m }, () => 0)
+  const check = Array.from({ length: n }, () => false)
+
+  function DFS(L) {
+    if (L === m) {
+      return console.log(tmp.join(" "))
+    } else {
+      arr.forEach((v, i) => {
+        if (!check[i]) {
+          check[i] = true
+          tmp[L] = v
+          DFS(L + 1)
+          check[i] = false
+        } else return
+      })
+    }
+  }
+  DFS(0)
+}
+
+solution(2, [3, 6, 9, 12])
