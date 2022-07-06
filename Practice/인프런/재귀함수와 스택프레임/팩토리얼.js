@@ -27,3 +27,16 @@ function solution(n) {
 }
 
 solution(4)
+
+//------------------
+
+function solution(n) {
+  function DFS(L, sum) {
+    if (L === 0) {
+      return console.log(sum)
+    } else {
+      DFS(L - 1, sum * L)
+    }
+  }
+  DFS(n, 1)
+}
