@@ -15,11 +15,3 @@ function solution(n, k) {
 }
 
 console.log(solution(N, K))
-
-/*
-while문을 돌린다. 
-if문을 통해서 확인한다. 
-1.만약 N % K 했을 때  0이 나오는지 확인한다.  
-나누어 떨어진다면 N/K를 하고 그 값을 N에 넣어준다. 
-
-*/
