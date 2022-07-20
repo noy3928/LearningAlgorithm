@@ -8,7 +8,6 @@ let input = require("fs")
 function solution(arr) {
   const minArr = []
   let answer = 0
-
   arr.forEach(eachArr => {
     minArr.push(Math.min(...eachArr))
   })
@@ -17,8 +16,3 @@ function solution(arr) {
 }
 
 solution(input)
-
-/*
-1.각 배열 중에서 가장 작은 숫자가 있는 수가 있는 배열을 만든다. 
-2.그 배열 안에서 가장 큰 수를 뽑는다. 
-*/
