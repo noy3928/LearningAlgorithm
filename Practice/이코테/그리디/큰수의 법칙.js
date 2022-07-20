@@ -1,6 +1,9 @@
 let input = require("fs").readFileSync("example.txt").toString().split("\n")
 
-const [N, M, K] = input.shift().split(" ")
+const [N, M, K] = input
+  .shift()
+  .split(" ")
+  .map(v => Number(v))
 const arr = input
   .shift()
   .split(" ")
