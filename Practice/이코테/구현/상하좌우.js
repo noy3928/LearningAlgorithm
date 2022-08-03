@@ -4,11 +4,8 @@ let mapSize = input.shift()
 
 let directions = input.shift().split(" ")
 
-console.log(mapSize, directions)
-
 function solution(mapSize, directions) {
-  const pos = [1, 1]
-
+  const pos = { x: 1, y: 1 }
   directions.forEach(direction => {
     if (direction == "R" && pos.x < mapSize) pos.x++
     if (direction == "L" && pos.x > 1) pos.x--
