@@ -13,13 +13,46 @@ const map = input.map(line =>
     .map(v => Number(v))
 )
 
-const checkLeft = currentDirection => {
-  const directions = [0, 1, 2, 3]
-  if (currentDirection == 0) return directions[3]
+console.log(characterPosition, map)
 
-  const index = direction.indexOf(currentDirection) - 1
-  const leftDiretion = directions[index]
-  return leftDiretion
+const getLeftDir = currentDirection => {
+  return currentDirection - 1 < 0 ? 3 : currentDirection - 1
+}
+
+const checkLeft = (position, map) => {
+  // 북 동 남 서
+  const dx = [0, 1, 0, -1]
+  const dy = [-1, 0, 1, 0]
+  const leftDirection = getLeftDir(position[2])
+  const yPos = position[1] + dy[leftDirection]
+  const xPos = position[0] + dx[leftDirection]
+
+  if (map[yPos][xPos] == 1) {
+    return true
+  } else {
+    return false
+  }
+}
+
+const moveLeft = (position, map) => {
+  const x = position[0]
+  const y = position[1]
+  const dir = position[2]
+
+  if (dir === 0) {
+    map[y][x - 1] = 1
+    position[0] -= 1
+  } else if (dir === 1) {
+    map[y - 1][x] = 1
+    position[1] -= 1
+  } else if (dir === 2) {
+    map[y][x + 1] = 1
+    position[0] += 1
+  } else if (dir === 3) {
+    map[y + 1][x] = 1
+    position[1] += 1
+  }
+  return [position, map]
 }
 
 function solution(characterPosition, map) {
@@ -28,9 +61,14 @@ function solution(characterPosition, map) {
 
   const dx = [0, 1, 0, -1]
   const dy = [-1, 0, 1, 0]
-
   while (isMovable) {
-    if()
+    if (checkLeft(characterPosition, map)) {
+      const [newPos, newMap] = moveLeft(characterPosition, map)
+      characterPosition = newPos
+      map = newMap
+    } else {
+      characterPosition[2] = getLeftDir(characterPosition[2])
+    }
   }
 }
 
