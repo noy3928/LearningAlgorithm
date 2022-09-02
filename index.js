@@ -1,14 +1,14 @@
-let input = require("fs").readFileSync("example.txt").toString().split("\n")
-input.shift()
-const arr = input.map(Number)
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./example.txt"
+let input = require("fs").readFileSync(filePath).toString().trim().split("\n")
 
-const solution = array => {
-  const maxNum = Math.max(...array)
-  let idx = 0
-  array.forEach((v, i) => {
-    if (v === maxNum) idx = i + 2
+const array = input.map(Number)
+
+const solution = arr => {
+  const result = new Set()
+  arr.forEach(v => {
+    result.add(v % 42)
   })
-  console.log(maxNum + "\n" + idx)
+  return result.size
 }
 
-solution(arr)
+console.log(solution(array))
