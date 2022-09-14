@@ -1,6 +1,3 @@
-const filePath = process.platform === "linux" ? "/dev/stdin" : "./example.txt"
-let input = require("fs").readFileSync(filePath).toString().trim().split("\n")
-
 function d(num) {
   let sum = num
   while (num) {
