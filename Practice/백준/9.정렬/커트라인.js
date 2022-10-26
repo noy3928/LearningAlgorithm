@@ -4,6 +4,11 @@ let input = fs.readFileSync(filePath).toString().trim().split("\n")
 const [N, M] = input.shift().split(" ").map(Number)
 const students = input.shift().split(" ").map(Number)
 
+students.sort((a, b) => b - a)
+console.log(students[M - 1])
+
+// --------------------
+
 const sort = arr => {
   let nums = arr
   for (let i = 0; i < nums.length; i++) {
