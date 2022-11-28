@@ -9,12 +9,6 @@ poketmonList.forEach((v, i) => mappedPoketmon.set(v, i + 1))
 
 const question = input
 
-function getByValue(map, searchValue) {
-  for (let [key, value] of map.entries()) {
-    if (value === searchValue) return key
-  }
-}
-
 const solution = (mappedPoketmon, question) => {
   let answer = ""
   question.forEach(v => {
