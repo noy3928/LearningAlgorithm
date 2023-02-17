@@ -1,0 +1,22 @@
+{
+  "name": "learningalgorithm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noy3928/LearningAlgorithm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noy3928/LearningAlgorithm/issues"
+  },
+  "homepage": "https://github.com/noy3928/LearningAlgorithm#readme",
+  "dependencies": {
+    "jest": "^29.4.3"
+  }
+}
