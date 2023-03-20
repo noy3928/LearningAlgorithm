@@ -45,3 +45,36 @@ function solution(cacheSize, cities) {
 시간복잡도 : O(n^2)
 공간복잡도 : O(n)
 */
+
+function solution(cacheSize, cities) {
+  const map = new Map()
+  const cacheHit = (city, map) => {
+    map.delete(city)
+    map.set(city, city)
+    return 1
+  }
+  const cacheMiss = (city, map, size) => {
+    if (size === 0) return 5
+    map.size === size && map.delete(map.keys().next().value)
+    map.set(city, city)
+    return 5
+  }
+  const getTimeCache = (city, map, size) =>
+    (map.has(city.toLocaleLowerCase()) ? cacheHit : cacheMiss)(
+      city.toLocaleLowerCase(),
+      map,
+      size
+    )
+  return cities
+    .map(city => getTimeCache(city.toLocaleLowerCase(), map, cacheSize))
+    .reduce((a, c) => a + c, 0)
+}
+
+/*
+다른 사람의 풀이 중에서 map을 이용한 풀이가 있었다. 
+이렇게하면 시간도 더 빨리질 수 있을거라고 생각했지만, 내가 선택하지 못했던 이유는 
+map을 이용하면 순서대로 값을 제거할 수 없을 거라고 생각했기 때문이다. 
+하지만, 위 코드를 보니, map.keys().next().value를 이용하면, 순서대로 값을 제거할 수 있는 것 같다. 
+이런 방법도 있구나.
+다음부터는 이런 방법도 활용해보면 좋을 것 같다는 생각이 들었다. 
+*/
