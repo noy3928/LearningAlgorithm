@@ -21,3 +21,45 @@ end = 'F'
 /*
 최단 경로를 찾는것. 
 */
+
+function findShortestPath(graph, start, end) {
+  let queue = [[start]]
+  let visited = new Set()
+
+  while (queue.length > 0) {
+    let path = queue.shift()
+    let node = path[path.length - 1]
+
+    if (!visited.has(node)) {
+      visited.add(node)
+      let neighbors = graph[node]
+
+      for (let neighbor of neighbors) {
+        let newPath = [...path, neighbor]
+
+        if (neighbor === end) {
+          return newPath
+        }
+
+        queue.push(newPath)
+      }
+    }
+  }
+
+  return null
+}
+
+let graph = {
+  A: ["B", "C"],
+  B: ["A", "D", "E"],
+  C: ["A", "F"],
+  D: ["B"],
+  E: ["B", "F"],
+  F: ["C", "E"],
+}
+
+let start = "A"
+let end = "F"
+
+let shortestPath = findShortestPath(graph, start, end)
+console.log(shortestPath)
