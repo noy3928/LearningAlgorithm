@@ -41,3 +41,21 @@ function solution(s, e) {
     L++
   }
 }
+
+//----------------------
+
+const solution = (me, you) => {
+  let distance = 1
+  const queue = [me]
+
+  while (queue.length) {
+    const v = queue.shift()
+    distance++
+    for (const nv of [v + 1, v - 1, v + 5]) {
+      if (nv === you) return distance
+      queue.push(nv)
+    }
+  }
+}
+
+console.log(solution(5, 14))
