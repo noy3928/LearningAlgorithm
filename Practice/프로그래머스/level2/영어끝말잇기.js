@@ -51,7 +51,7 @@ n명의 사람 수 만큼, 단어의 배열을 짤라서 배열에 넣는다.
 
 /*
 계획 : 
-1.주어진 문자열들을 n만큼 짤라서 배열에 넣는다. chunkedWords
+1.주어진 문자열들을 n만큼 짤라서 배열에 넣는다. chunkedWords [[hello, one], [even, never], [now, world]]
 2.chunkedWords를 순회한다.
     2.1.각 chunks에 대해 순회하는 중이므로, chunk안에서 한번 더 각 사람의 순서대로 순회한다. lastChar를 만든다.
         2.1.1.각 요소를 체크한다.
